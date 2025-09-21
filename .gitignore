@@ -140,6 +140,7 @@ celerybeat.pid
 .venv
 env/
 venv/
+flask_project_env/
 ENV/
 env.bak/
 venv.bak/
