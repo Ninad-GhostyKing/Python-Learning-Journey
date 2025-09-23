@@ -151,6 +151,7 @@ venv.bak/
 
 # Vs Code project
 .code-workspace
+flask_project.code-workspace
 
 # Rope project settings
 .ropeproject
