@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigBlogger</title>
+</head>
+<body>
+    <h1>Welcome To BigBlogger!!</h1>
+    <hr>
+    {% for blog in all_post: %}
+        <h1><u>Post {{ blog['id'] }}:</u> {{ blog['title'] }}</h1>
+        <h2><u>Subtitle:</u> {{ blog['subtitle'] }}</h2>
+        <h2><u>Content:</u> {{ blog['body'] }} </h2>
+        <hr>
+        <br>
+    {% endfor %}
+    {% for blog in all_post %}
+        {% if blog['id']==2: %}
+        <h1><u>Post {{ blog['id'] }}:</u> {{ blog['title'] }}</h1>
+        <h2><u>Subtitle:</u> {{ blog['subtitle'] }}</h2>
+        <h2><u>Content:</u> {{ blog['body'] }} </h2>
+        <hr>
+        <br>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
