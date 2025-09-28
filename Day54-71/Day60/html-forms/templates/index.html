@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html Forms</title>
+</head>
+
+<body>
+    <h1>Welcome TO Html Forms</h1>
+    <hr>
+    <div>
+        <form action="{{ url_for('login') }}" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="name">
+
+            <label for="password">Password</label>
+            <input type="text" id="password" name="password" placeholder="password">
+
+            <button type="submit" style="width:30px;" value="Submit">Ok</button>
+
+        </form>
+    </div>
+</body>
+
+</html>
