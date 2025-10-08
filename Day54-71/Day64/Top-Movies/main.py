@@ -159,13 +159,13 @@ def search_movie():
     data = response.json()
     with app.app_context():
         movie = Movies(
-            title = data['title'],
-            year = data['release_date'].split('-')[0],
-            description = data['overview'],
-            rating = round(data['vote_average'],1),
-            ranking = 0,
-            review = "",
-            img_url = f"{TMBD_API_IMG_URL}{data['poster_path']}"
+            title=data["title"],  # type: ignore
+            year=data["release_date"].split("-")[0],  # type: ignore
+            description=data["overview"],  # type: ignore
+            rating=round(data["vote_average"], 1),  # type: ignore
+            ranking=0,  # type: ignore
+            review="",  # type: ignore
+            img_url=f"{TMBD_API_IMG_URL}{data['poster_path']}",  # type: ignore
         )
         db.session.add(movie)
         db.session.commit()
