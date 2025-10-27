@@ -1,0 +1,105 @@
+{% include "header.html" %}
+{% from 'bootstrap5/form.html' import render_form%}
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('{{post.img_url}}')">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="post-heading">
+          <h1>{{ post.title }}</h1>
+          <h2 class="subheading">{{ post.subtitle }}</h2>
+          <span class="meta"
+            >Posted by
+            <a href="#">{{ post.author }}</a>
+            on {{ post.date }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Post Content -->
+<article>
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        {{ post.body|safe }}
+        <!--TODO: Only show Edit Post button if user id is 1 (admin user) -->
+        {% if current_user.id == post.author_id %}
+        <div class="d-flex justify-content-end mb-4">
+          <a
+            class="btn btn-primary float-right"
+            href="{{url_for('edit_post', post_id=post.id)}}"
+            >Edit Post</a
+          >
+        </div>
+        {% endif %}
+
+        <!-- Comments Area -->
+        <!-- TODO: Add a CKEditor for commenting below -->
+        {{ ckeditor.load() }}
+        {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+        {# {{ ckeditor.config(name="comment", enterMode='BR', shiftEnterMode='BR') }} #}
+
+        {# <script type="text/javascript">
+          // This code must run AFTER the <textarea id="comment"> is in the DOM.
+
+          // Check if the CKEDITOR object is available
+          if (typeof CKEDITOR !== 'undefined') {
+
+            // 1. Get a reference to your specific textarea ID (which Flask-WTF names 
+            //    after the field name, "comment").
+            var textareaElement = document.getElementById('comment');
+
+            // 2. Only proceed if the textarea element exists
+            if (textareaElement) {
+
+              // 3. Replace the textarea with the CKEditor instance,
+              //    passing the custom configuration object directly.
+              CKEDITOR.replace('comment', {
+                // Configure Enter Mode to use <br> instead of <p>
+                enterMode: CKEDITOR.ENTER_BR,
+                shiftEnterMode: CKEDITOR.ENTER_BR,
+
+                // Optional: Reduce toolbar for a comment field
+                toolbar: [
+                  { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'RemoveFormat'] },
+                  { name: 'paragraph', items: ['NumberedList', 'BulletedList'] }
+                ]
+              });
+
+              // Crucial: The instance needs to be told to update the original 
+              // textarea before submission, which happens automatically with the 
+              // Flask-CKEditor helper but is good practice here.
+              CKEDITOR.instances.comment.on('instanceReady', function (e) {
+                e.editor.updateElement();
+              });
+            }
+          }
+        </script> #}
+
+        <div class="comment">
+          <!-- TODO: Show all the comments on a post -->
+          <ul class="commentList">
+          {% for com in comments %}
+          
+            <li>
+              <div class="commenterImage">
+                <img src={{gravatar_url(com.parent_user_b.email)}} />
+              </div>
+              <div class="commentText">
+                <p>{{ com.text | safe }}</p>
+                <span class="date sub-text">{{ com.author }}</span>
+              </div>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+{% include "footer.html" %}
