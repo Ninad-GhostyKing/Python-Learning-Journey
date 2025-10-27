@@ -30,7 +30,7 @@ This will install the packages from the requirements.txt for this project.
 dotenv.load_dotenv()
 CUR_DIR = pathlib.Path(__file__).parent
 app = Flask(__name__)
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 ckeditor = CKEditor(app)
 
 Bootstrap5(app)
@@ -45,8 +45,11 @@ login_manager.login_view = "login"
 class Base(DeclarativeBase):
     pass
 
-
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + str(CUR_DIR / "instance/blog.db")
+database_url = os.environ.get("DB_URI")
+if database_url:
+    app.config["SQLALCHEMY_DATABASE_URI"] = database_url.replace("postgres://", "postgresql://", 1)
+else:   
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + str(CUR_DIR / "instance/blog.db")
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
