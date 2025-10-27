@@ -20,7 +20,7 @@ This will install the packages from requirements.txt for this project.
 CUR_DIR = pathlib.Path(__file__).parent
 
 dotenv.load_dotenv(
-    "/home/ghostyking/Projects/Python100Days/Python-Learning-Journey/.env"
+    "Python-Learning-Journey/.env"
 )
 
 # Class

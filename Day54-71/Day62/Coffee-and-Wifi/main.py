@@ -18,7 +18,7 @@ pip3 install -r requirements.txt
 This will install the packages from requirements.txt for this project.
 """
 dotenv.load_dotenv(
-    "/home/ghostyking/Projects/Python100Days/Python-Learning-Journey/.env"
+    "Python-Learning-Journey/.env"
 )
 
 app = Flask(__name__)

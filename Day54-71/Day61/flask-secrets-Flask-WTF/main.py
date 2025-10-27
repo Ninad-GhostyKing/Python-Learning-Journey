@@ -24,7 +24,7 @@ bootstap = Bootstrap5(app)
 
 # Environment Constants
 dotenv.load_dotenv(
-    "/home/ghostyking/Projects/Python100Days/Python-Learning-Journey/.env"
+    "Python-Learning-Journey/.env"
 )
 
 MY_SECRET_KEY = os.getenv("SECRET_KEY").encode("utf8")
