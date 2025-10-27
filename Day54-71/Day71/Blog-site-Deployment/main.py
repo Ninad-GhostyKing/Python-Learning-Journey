@@ -299,5 +299,10 @@ def login_checker():
     return current_user.is_authenticated
 
 
+# if __name__ == "__main__":
+#     app.run(debug=True, port=5001)
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    # Get the port from the environment variable (or default to 5000 for local testing)
+    port = int(os.environ.get("PORT", 5000))
+    # Use 0.0.0.0 to listen on all public IPs
+    app.run(host="0.0.0.0", port=port)
