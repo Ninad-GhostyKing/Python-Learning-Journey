@@ -1,5 +1,5 @@
 from datetime import date
-from flask import Flask, abort, render_template, redirect, url_for, flash, request
+from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 
@@ -11,7 +11,7 @@ from sqlalchemy import Integer, String, Text, ForeignKey
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import CreatePostForm, LoginForm, RegisterForm, CommentForm
-import os, dotenv, pathlib, typing, hashlib, datetime, smtplib
+import os, dotenv, pathlib, typing, hashlib, smtplib
 
 
 """
@@ -27,7 +27,7 @@ pip3 install -r requirements.txt
 This will install the packages from the requirements.txt for this project.
 """
 
-dotenv.load_dotenv("Python-Learning-Journey/.env")
+dotenv.load_dotenv()
 CUR_DIR = pathlib.Path(__file__).parent
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
