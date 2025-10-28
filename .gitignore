@@ -153,6 +153,7 @@ venv.bak/
 # Vs Code project
 .code-workspace
 flask_project.code-workspace
+data_sci_py.code-workspace
 .vscode
 
 # Rope project settings

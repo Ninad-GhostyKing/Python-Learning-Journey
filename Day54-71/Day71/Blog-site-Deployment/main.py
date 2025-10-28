@@ -11,7 +11,12 @@ from sqlalchemy import Integer, String, Text, ForeignKey
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import CreatePostForm, LoginForm, RegisterForm, CommentForm
-import os, dotenv, pathlib, typing, hashlib, smtplib
+import os
+import dotenv
+import pathlib
+import typing
+import hashlib
+import smtplib
 
 
 """
